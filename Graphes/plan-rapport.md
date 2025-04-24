@@ -20,6 +20,12 @@ _Ci-dessous, H1, H2, etc. désignent des noms d'hôtes ; V1, V2, etc. désignent
 ### Forte affinité
 _Donnez une paire (H1, V1) qui présente une forte affinité. Expliquez pourquoi._
 
+FORNAME; NAME; BIRTH_DATE; HOBBIES;                 GENDER; PAIR_GENDER;
+Patrick; H1;   28/08/2010; culture,reading,botanic; male;   male;
+Jean;    V1;   12/11/2010; swim,culture,reading;    male;   male;
+
+Ils ont une forte affinité car ils ont les mêmes centres d'intérêt, n'ont pas de grosse différence d'âge, et ils sont compatibles au niveau du genre (Homme -> Homme) (Homme -> Homme)
+
 ### Faible affinité
 _Donnez une paire (H2, V2) qui présente une faible affinité. Expliquez pourquoi_
 
