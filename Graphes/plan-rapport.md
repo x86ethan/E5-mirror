@@ -54,6 +54,35 @@ _Donnez trois paires hôte-visiteur (H3, V3), (H4, V4), (H5, V5) d'affinités à
 ## Exemple complet
 _Donnez un exemple de quatre hôtes A, B, C, D et quatre visiteurs W, X, Y, Z. Puis, donnez l'appariement qui vous considérez le meilleur entre ces hôtes et visiteurs._
 
+| NAME | BIRTH_DATE | HOBBIES                        | GENDER | PAIR_GENDER |
+|------|------------|--------------------------------|--------|-------------|
+| A    | 15/06/2006 | reading, photography           | male   | male        |
+| B    | 11/05/2008 | cooking, video games, running  | male   | male        |
+| C    | 20/03/2005 | drawing, gardening             | female | male        |
+| D    | 22/11/2008 | photography, reading, hiking   | male   |             |
+| W    | 01/09/2010 | drawing, yoga                  | male   | male        |
+| X    | 03/02/2006 | dancing, writing, singing      | female | male        |
+| Y    | 14/03/2005 | movies                         | female | male        |
+| Z    | 24/01/2004 | cycling, painting              | male   | male        |
+
+Solution 1 :
+- A ← W ✅ 
+- B ← Z ✅ 
+- C ← X ✅ 
+- D ← Y ✅ 
+
+Solution 2 :
+- A ← Z ✅
+- B ← W ✅
+- C ← Y ✅
+- D ← X ✅ 
+
+Solution 3 :
+- A ← W ✅
+- B ← X ✅
+- C ← Z ✅
+- D ← Y ✅ 
+
 ## Score d'affinité
 
 _**Lisez les conseils pour l'écriture de pseudo-code se trouvant sur Moodle**._
