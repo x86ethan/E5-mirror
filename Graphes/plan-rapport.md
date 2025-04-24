@@ -30,6 +30,13 @@ Ils ont une forte affinité car ils ont les mêmes centres d'intérêt, n'ont pa
 ### Faible affinité
 _Donnez une paire (H2, V2) qui présente une faible affinité. Expliquez pourquoi_
 
+| FORNAME | NAME | BIRTH_DATE | HOBBIES | GENDER | PAIR_GENDER |
+|---|---|---|---|---|---|
+| Gotaga | H2 | 07/09/1993 | gaming,esport | male | male |
+| Marine | V2 | 05/08/1968 | politic,swim,cooking | female | female |
+
+D'une, ils ont un trop grand écart d'âge, ils n'ont pas de compatibilité en terme de préférences de genre, et ils ne possèdent aucun centre d'intérêt en commun.
+
 ### Arbitrage entre les critères d'affinité
 _Donnez trois paires hôte-visiteur (H3, V3), (H4, V4), (H5, V5) d'affinités à peu près équivalentes. Ces paires doivent illustrer comment vous arbitrez entre les différents critères d'affinité (passe-temps, préférences de genre, différence d'âge). Donc, idéalement, les raisons d'affinité seraient différentes dans les trois paires._
 
