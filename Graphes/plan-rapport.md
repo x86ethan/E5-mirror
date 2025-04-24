@@ -40,6 +40,17 @@ D'une, ils ont un trop grand écart d'âge, ils n'ont pas de compatibilité en t
 ### Arbitrage entre les critères d'affinité
 _Donnez trois paires hôte-visiteur (H3, V3), (H4, V4), (H5, V5) d'affinités à peu près équivalentes. Ces paires doivent illustrer comment vous arbitrez entre les différents critères d'affinité (passe-temps, préférences de genre, différence d'âge). Donc, idéalement, les raisons d'affinité seraient différentes dans les trois paires._
 
+| FORNAME | NAME | BIRTH_DATE | HOBBIES | GENDER | PAIR_GENDER |
+|---|---|---|---|---|---|
+| Luc | H3 | 02/12/2008 | science,gaming | male | female |
+| Pablo | V3 | 16/11/2008 | music | male | female |
+| Juliette | H4 | 22/05/2006 | sport,reading | female | male |
+| Eva | V4 | 18/08/2004 | sport,reading | female | male |
+| Isagi | H5 | 29/05/2007 | football,shopping | male | male |
+| Bachira | V5 | 17/09/2005 | basketball,culture | male | male |
+
+
+
 ## Exemple complet
 _Donnez un exemple de quatre hôtes A, B, C, D et quatre visiteurs W, X, Y, Z. Puis, donnez l'appariement qui vous considérez le meilleur entre ces hôtes et visiteurs._
 
