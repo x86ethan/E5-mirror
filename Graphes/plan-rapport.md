@@ -57,31 +57,19 @@ _Donnez un exemple de quatre hôtes A, B, C, D et quatre visiteurs W, X, Y, Z. P
 | NAME | BIRTH_DATE | HOBBIES                        | GENDER | PAIR_GENDER |
 |------|------------|--------------------------------|--------|-------------|
 | A    | 15/06/2006 | reading, photography           | male   | male        |
-| B    | 11/05/2008 | cooking, video games, running  | male   | male        |
-| C    | 20/03/2005 | drawing, gardening             | female | male        |
+| B    | 11/05/2008 | cooking, running               | male   | male        |
+| C    | 20/03/2005 | drawing, dancing               | female | male        |
 | D    | 22/11/2008 | photography, reading, hiking   | male   |             |
 | W    | 01/09/2010 | drawing, yoga                  | male   | male        |
-| X    | 03/02/2006 | dancing, writing, singing      | female | male        |
-| Y    | 14/03/2005 | movies                         | female | male        |
-| Z    | 24/01/2004 | cycling, painting              | male   | male        |
+| X    | 03/02/2006 | dancing, writing               | female | male        |
+| Y    | 14/03/2005 | reading                        | female | male        |
+| Z    | 24/01/2004 | reading, cooking, running      | male   | male        |
 
 Solution 1 :
-- A ← W ✅ 
-- B ← Z ✅ 
-- C ← X ✅ 
-- D ← Y ✅ 
-
-Solution 2 :
-- A ← Z ✅
-- B ← W ✅
-- C ← Y ✅
-- D ← X ✅ 
-
-Solution 3 :
-- A ← W ✅
-- B ← X ✅
-- C ← Z ✅
-- D ← Y ✅ 
+- W ← C ✅ 
+- Z ← B ✅ 
+- Y ← A ✅ 
+- X ← D ✅ 
 
 ## Score d'affinité
 
@@ -93,17 +81,22 @@ _Donner le pseudo-code de la fonction `score_affinité_1(hôte, visiteur)` qui r
 double score_affinité_1(hôte, visiteur) 
   score = 0
 
-  si hôte.age - visiteur.age <= 18 mois
-    score = score + 5
+  si hôte.age - visiteur.age <= 30 mois
+    score = score - 5
+
+  si hôte.age - visiteur.age <= 18 mois (Pour que l'afiniter par rapport a l'age soit plus importante)
+    score = score - 5
 
   si hôte.gender == visiteur.pair_gender
-    score = score + 5
+    score = score - 5
 
   si visiteur.gender == hôte.pair_gender
-    score = score + 5
+    score = score - 5
 
-  N = nombre_hobbies_en_commun(hôte, visiteur)
+  N = 1 + nombre_hobbies_en_commun(hôte, visiteur)
   score = score * N
+
+  retourner score
 ```
 
 ## Retour sur l'exemple
@@ -112,7 +105,20 @@ _Donnez la matrice d'adjacence du graphe biparti complet entre les hôtes A, B, 
 
 _Calculez l'appariement de poids minimal pour ce graphe. Obtenez-vous l'appariement que vous aviez identifié comme le meilleur ?_
 
+```
+Matrice du graphe :
+                A        B        C        D 
+       W  -10,000  -15,000  -20,000  -15,000 
+       X  -15,000  -10,000  -10,000   -5,000 
+       Y  -30,000   -5,000  -10,000  -20,000 
+       Z  -30,000  -30,000  -15,000  -20,000 
 
+Affectation de cout minimal -85,000000 :
+(W, C, -20,000000)
+(Z, B, -30,000000)
+(Y, A, -30,000000)
+(X, D, -5,000000)
+```
 
 # Version 2
 
