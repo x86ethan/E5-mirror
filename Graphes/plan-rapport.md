@@ -91,9 +91,19 @@ _Donner le pseudo-code de la fonction `score_affinité_1(hôte, visiteur)` qui r
 
 ```
 double score_affinité_1(hôte, visiteur) 
-  // compléter le code ici
-  // ...
-  // ...
+  score = 0
+
+  si hôte.age - visiteur.age <= 18 mois
+    score = score + 5
+
+  si hôte.gender == visiteur.pair_gender
+    score = score + 5
+
+  si visiteur.gender == hôte.pair_gender
+    score = score + 5
+
+  N = nombre_hobbies_en_commun(hôte, visiteur)
+  score = score * N
 ```
 
 ## Retour sur l'exemple
