@@ -1,3 +1,13 @@
 public enum Country {
-    FR,GE,IT,ES,
+    FR("France"),GE("Alemagne"),IT("Italie"),ES("Espagne");
+
+    private String longLabel;
+
+    private Country(String longLabel){
+        this.longLabel = longLabel;
+    }
+
+    public String getLongLabel(){
+        return this.longLabel;
+    }
 }
