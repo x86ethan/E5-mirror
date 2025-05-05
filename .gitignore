@@ -1,0 +1,4 @@
+App/bin/
+App/doc/
+.vscode/ltex.*.txt
+**/*.class
