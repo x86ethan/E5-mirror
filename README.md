@@ -1,5 +1,11 @@
 # 📚 Outil d’Aide à la Décision pour Séjours Linguistiques
 
+### 🏢 Accès rapide
+ - **[Rapport du projet](Doc/Rapport.pdf)**
+ - **[Diagramme UML de l'appliation](Doc/DiagramUML.pdf)**
+ - **[Dossier principal de développement](App)**
+
+
 ## 📖 Présentation
 
 Projet de SAÉ 2.01 & 2.02 — **IUT de Lille, Université de Lille 2024-2025**.  
@@ -26,8 +32,7 @@ Développement d’une application Java permettant de gérer des séjours lingui
 - Historique 📜
 
 ## 📦 Structure du projet
-/src -> Code source java
-/resources -> CSV et fichiers de config
-/mockups -> Maquettes IHM
-/doc -> Diagrammes UML et rapports 
-/out -> JAR exécutables 
+ - **/App** : Application principale
+ - **/Doc** : Documents du projet (Rapport, Diagramme UML de l'application)
+ - **/Graphes** : Tous les fichiers relatifs à la partie Graphes
+
