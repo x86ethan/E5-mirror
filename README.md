@@ -1,8 +1,8 @@
 # 📚 Outil d’Aide à la Décision pour Séjours Linguistiques
 
-### 🏢 Accès rapide
+## 🏢 Accès rapide
  - **[Rapport du projet](Doc/Rapport.pdf)**
- - **[Diagramme UML de l'appliation](Doc/DiagramUML.pdf)**
+ - **[Diagramme UML de l'appliation](Doc/Rapport/assets/DiagramUML.pdf)**
  - **[Dossier principal de développement](App)**
 
 
