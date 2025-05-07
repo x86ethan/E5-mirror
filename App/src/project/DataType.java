@@ -1,4 +1,4 @@
-package App;
+package project;
 
 public abstract class DataType {
     public abstract boolean importCSV(String filename);

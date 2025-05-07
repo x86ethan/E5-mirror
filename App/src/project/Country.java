@@ -1,4 +1,4 @@
-package App;
+package project;
 
 public enum Country {
     FR("France"),GE("Alemagne"),IT("Italie"),ES("Espagne");
