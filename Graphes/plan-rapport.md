@@ -129,44 +129,235 @@ _Ci-dessous, vous définirez des hôtes ayant des noms A1, A2, B1, B2, etc., et 
 - _des valeurs pour les colonnes HOST_HAS_ANIMAL, HOST_FOOD pour les hôtes ;_
 - _des valeurs pour les colonnes GUEST_ANIMAL_ALLERGY, GUEST_FOOD_CONSTRAINT pour les visiteurs._
 
+### Hosts
+
+| NAME | HOBBIES               | GENDER | PAIR_GENDER | BIRTH_DATE | HOST_HAS_ANIMAL | HOST_FOOD |
+|------|------------------------|--------|-------------|------------|------------------|-----------|
+| A1   | Cooking, gardening     | Female | Male        | 2006-04-22 | Yes              | veggie    |
+| A2   | Hiking, reading        | Male   | Female      | 2005-12-10 | No               | noNuts    |
+| B1   | Cinema, board games    | Male   | Male        | 2007-07-01 | Yes              | veggie    |
+| B2   | Dance, photography     | Female | Female      | 2004-03-15 | No               | noNuts    |
+| C1   | Skateboarding, gaming  | Male   | Female      | 2006-05-03 | Yes              | veggie    |
+| C2   | Drawing, animals       | Female | Male        | 2007-09-22 | No               | noNuts    |
+
+### Guests
+
+| NAME | HOBBIES               | GENDER | PAIR_GENDER | BIRTH_DATE | GUEST_ANIMAL_ALLERGY | GUEST_FOOD_CONSTRAINT |
+|------|------------------------|--------|-------------|------------|------------------------|------------------------|
+| W1   | Music, writing         | Female | Male        | 2005-09-30 | No                     | veggie                 |
+| W2   | Swimming, painting     | Male   | Female      | 2004-11-12 | Yes                    | noNuts                 |
+| X1   | Climbing, cinema       | Male   | Male        | 2008-02-27 | No                     | none                   |
+| X2   | Reading, yoga          | Female | Female      | 2006-06-18 | Yes                    | veggie                 |
+| Y1   | Biking, manga          | Male   | Female      | 2005-01-16 | No                     | noNuts                 |
+| Y2   | Theater, piano         | Female | Male        | 2006-12-04 | Yes                    | veggie                 |
+| Z1   | Photography, gaming    | Male   | Male        | 2008-03-10 | No                     | veggie                 |
+| Z2   | Singing, drawing       | Female | Female      | 2007-07-25 | Yes                    | noNuts                 |
+
 ## Exemple avec appariement total
 
 _Donnez un exemple de quatre hôtes A1, B1, C1, D1 et quatre visiteurs W1, X1, Y1, Z1 pour lesquels il existe des incompatibilités entre certains hôtes et certains visiteurs, mais il est possible de trouver un appariement qui respecte les contraintes rédhibitoires._
 
+### Contraintes rédhibitoires :
+
+    Un visiteur allergique aux animaux ne peut pas être placé chez un hôte ayant un animal.
+
+    Un hôte ne doit pas proposer une alimentation incompatible avec les contraintes alimentaires du visiteur.
+
+### Hosts
+
+| NAME | HOBBIES         | GENDER | PAIR_GENDER | BIRTH_DATE | HOST_HAS_ANIMAL | HOST_FOOD |
+|------|------------------|--------|-------------|------------|------------------|-----------|
+| A1   | Gardening        | Female | Male        | 2006-03-10 | Yes              | veggie    |
+| B1   | Cinema           | Male   | Female      | 2007-08-22 | No               | noNuts    |
+| C1   | Gaming           | Male   | Male        | 2005-05-01 | Yes              | noNuts    |
+| D1   | Drawing          | Female | Female      | 2004-12-15 | No               | veggie    |
+
+### Guests
+
+| NAME | HOBBIES         | GENDER | PAIR_GENDER | BIRTH_DATE | GUEST_ANIMAL_ALLERGY | GUEST_FOOD_CONSTRAINT |
+|------|------------------|--------|-------------|------------|------------------------|------------------------|
+| W1   | Music            | Female | Male        | 2005-07-10 | Yes                    | noNuts                 |
+| X1   | Climbing         | Male   | Male        | 2006-02-19 | No                     | veggie                 |
+| Y1   | Manga            | Male   | Female      | 2007-06-04 | Yes                    | noNuts                 |
+| Z1   | Photography      | Female | Female      | 2008-01-30 | No                     | veggie                 |
+
+
 _Donnez également l'appariement que vous considérez le meilleur pour cet exemple. Expliquez pourquoi._
+
+|Hôte|Visiteur|Raison du choix|
+|---|---|---|
+|B1|W1|W1 est allérgiques aux animeaux et allérgique aux cacahuétes arachides,B1 est n'a pas d'animal et propose une alimentation sans arachides |
+|D1|X1|X1 n'a pas d'allergie mais posséde un rémige vegétarien et D1 propose un régime végétarien et ne posséde pas d'animal|
+|C1|Y1|Y1 est allergique aux animaux et suit un réigme aux sans arachides et C1 ne posséde pas d'animal |
+|A1|Z1|	Z1 n’a pas d’allergie et suit un régime veggie et n'a pas d'allergy vers un annimal. A1 a un animal et propose veggie|
 
 ## Exemple sans appariement total
 
 _Donnez un exemple de quatre hôtes A2, B2, C2, D2 et quatre visiteurs W2, X2, Y2, Z2 pour lesquels il n'est pas possible de former quatre paires hôte-visiteur à cause d'incompatibilités._
 
+### Hosts
+
+| NAME | HOBBIES         | GENDER | PAIR_GENDER | BIRTH_DATE | HOST_HAS_ANIMAL | HOST_FOOD |
+|------|------------------|--------|-------------|------------|------------------|-----------|
+| A2   | Painting         | Female | Male        | 2005-06-15 | Yes              |           |
+| B2   | Basketball       | Male   | Female      | 2004-09-10 | No               |           |
+| C2   | Cooking          | Female | Male        | 2006-03-22 | Yes              |           |
+| D2   | Photography      | Male   | Female      | 2007-12-05 | No               |           |
+
+### Guests
+
+| NAME | HOBBIES         | GENDER | PAIR_GENDER | BIRTH_DATE | GUEST_ANIMAL_ALLERGY | GUEST_FOOD_CONSTRAINT |
+|------|------------------|--------|-------------|------------|------------------------|------------------------|
+| W2   | Hiking           | Male   | Female      | 2007-01-17 | Yes                    |                       |
+| X2   | Reading          | Female | Male        | 2006-04-12 | No                     |                       |
+| Y2   | Writing          | Male   | Male        | 2005-08-25 | Yes                    | noNuts                 |
+| Z2   | Yoga             | Female | Female      | 2004-11-08 | No                     | veggie                 |
+
+Incompatibilités :
+
+  1. W2 est allergique aux animaux → A2 et C2 (ayant un animal) ne peuvent pas l’accueillir.
+
+  2. Y2 a une contrainte alimentaire noNuts → A2 et C2 (proposent autre chose que noNuts) ne peuvent pas l’accueillir.
+
+  3. Z2 suit un régime veggie → B2 (qui ne propose pas de restriction alimentaire) ne peut pas l’accueillir, mais D2 propose veggie.
+
 _Pour cet exemple, quel est le plus grand nombre de paires qu'on peut former ?_
+  * En raison des incompatibilités mentionnées ci-dessus, le plus grand nombre de paires que l’on peut former est de 3.
 
 _Donnez l'appariement que vous considérez le meilleur. Expliquez pourquoi._
+  * W2 et B2 : W2 a une allergie aux animaux et B2 n’a pas d’animal. Ils peuvent donc être appariés sans problème.
 
 ## Score d'affinité
 
 _Donner le pseudo-code de la fonction `score_affinité_2(hôte, visiteur)` qui retourne un nombre représentant le degré d'affinité entre un hôte et un visiteur. Vous pouvez réutiliser la fonction `score_affinité_1` (l'appeler ou copier du code)._
 
+### Comptabilité 2 :
 ```
-double score_affinité_2(hôte, visiteur) 
-  // compléter le code ici
-  // ...
-  // ...
+Fonction computeCompatibility(h de type History):
+    // Prise en compte des préférences
+
+    // Parsing des hobbies
+    guestHobbies = éclater(this.guest.getCriteriaValue("HOBBIES"), ",")
+    hostHobbies = éclater(this.host.getCriteriaValue("HOBBIES"), ",")
+
+    matchingHobbies = nouvelle ListeVide
+
+    Pour chaque hobby dans guestHobbies:
+        Si arrayContient(hostHobbies, hobby) alors:
+            ajouter hobby à matchingHobbies
+        Fin Si
+    Fin Pour
+
+    Pour chaque hobby dans hostHobbies:
+        Si arrayContient(guestHobbies, hobby) ET NON arrayListContient(matchingHobbies, hobby) alors:
+            ajouter hobby à matchingHobbies
+        Fin Si
+    Fin Pour
+
+    Si longueur(hostHobbies) > longueur(guestHobbies) alors:
+        maxHobbiesLength = longueur(hostHobbies)
+    Sinon:
+        maxHobbiesLength = longueur(guestHobbies)
+    Fin Si
+
+    hobbiesCompatibility = taille(matchingHobbies) / maxHobbiesLength
+
+    genderCompatibility = 0
+
+    Si this.guest.getCriteriaValue("PAIR_GENDER") est égal à this.host.getCriteriaValue("GENDER") alors:
+        genderCompatibility = 1
+    Fin Si
+
+    ageCompatibility = 0
+
+    Si valeurAbsolue(this.host.getAge() - this.guest.getAge()) <= 1 alors:
+        ageCompatibility = 1
+    Fin Si
+
+    // Contraintes rédhibitoires
+
+    animalAllergyCompatibility = vrai
+    Si this.host.hasCriteria("HOST_HAS_ANIMAL", "true") ET this.guest.hasCriteria("GUEST_ANIMAL_ALLERGY", "true") alors:
+        animalAllergyCompatibility = faux
+    Fin Si
+
+    foodAllergyCompatibility = vrai
+
+    Si this.guest.hasCriteria("GUEST_FOOD", "vegetarian") ET NON this.host.hasCriteria("HOST_FOOD", "vegetarian") alors:
+        foodAllergyCompatibility = faux
+    Sinon Si this.guest.hasCriteria("GUEST_FOOD", "nonuts") ET NON this.host.hasCriteria("HOST_FOOD", "nonuts") alors:
+        foodAllergyCompatibility = faux
+    Fin Si
+
+    // Historique
+
+    historyCompatibility = vrai
+    historyAffinity = 0
+    Si this.guest.hasCriteria("HISTORY", "same") ET this.host.hasCriteria("HISTORY", "same") ET NON h.hasAlreadyBeenMatched(this.host, this.guest) alors:
+        historyCompatibility = faux
+    Sinon Si h.hasAlreadyBeenMatched(this.guest, this.host) ET (this.host.hasCriteria("HISTORY", "other") OU this.guest.hasCriteria("HISTORY", "other")) alors:
+        historyCompatibility = faux
+    Fin Si
+
+    Si animalAllergyCompatibility ET foodAllergyCompatibility ET historyCompatibility alors:
+        this.compatibility = (genderCompatibility + hobbiesCompatibility + ageCompatibility) / 3.0
+    Sinon:
+        this.compatibility = 0.0
+    Fin Si
+Fin Fonction
 ```
 
 ## Retour sur l'exemple
 
 _Donnez les matrices d'adjacence pour les deux exemples de la Version 2 (A1,B1,C1,D1/W1,X1,Y1,Z1 et A2,B2,C2,D2/W2,X2,Y2,Z2). Les poids des arêtes sont déterminés par la fonction `score_affinité_2`. Pensez à nommer les lignes et les colonnes._
+|    | W1  | X1   | Y1   | Z1   |
+| -- | --- | ---- | ---- | ---- |
+| A1 | 0.0 | 0.33 | 0.0  | 0.33 |
+| B1 | 1.0 | 0.0  | 0.33 | 0.0  |
+| C1 | 0.0 | 0.0  | 0.0  | 0.0  |
+| D1 | 0.0 | 1.0  | 0.0  | 0.67 |
+
+|    | W2  | X2   | Y2  | Z2   |
+| -- | --- | ---- | --- | ---- |
+| A2 | 0.0 | 0.33 | 0.0 | 0.33 |
+| B2 | 1.0 | 0.0  | 0.0 | 0.0  |
+| C2 | 0.0 | 0.0  | 0.0 | 0.0  |
+| D2 | 0.0 | 0.67 | 0.0 | 0.67 |
+
 
 _Calculez l'appariement de poids minimal pour chacun des graphes. Obtenez-vous l'appariement que vous aviez identifié comme le meilleur ?_
+```
+Affectation de cout minimal 0,000000 :
+(D1, W1, 0,000000)
+(A1, Y1, 0,000000)
+(C1, X1, 0,000000)
+(B1, Z1, 0,000000)
+```
+```
+Affectation de cout minimal 0,000000 :
+(D2, W2, 0,000000)
+(A2, Y2, 0,000000)
+(C2, X2, 0,000000)
+(B2, Z2, 0,000000)
+```
 
 ## Robustesse de la modélisation (question difficile)
 
 _Est-ce que votre fonction `score_affinité_2` garantit que les contraintes rédhibitoires seront toujours respectées, quel que soit le jeu de données ? Justifiez votre réponse._
 
+Oui, la fonction `score_affinite_2` garantit bel et bien que les contraintes rédhibitoires seront **toujours** respectées, car leur vérification fait renter en jeu un schéma conditionnel n'autorisant pas un score d'affinité autre que 0 si une d'entre elles n'est pas respectée. 
+
 _**Indications** : Cherchez un exemple de **grande taille** pour lequel la fonction `score_affinité_2` pourrait ne pas garantir le respect des contraintes. Dans cet exemple, vous auriez beaucoup d'adolescents compatibles sans affinité, et quelques adolescents incompatibles avec beaucoup d'affinité._
+* 100 visiteurs et 100 hôtes.
+
+* 90 visiteurs sont compatibles avec 90 hôtes (pas de contraintes rédhibitoires) mais n’ont aucune affinité (hobbies différents, genres non préférés, âge éloigné) score_affinité_2 à peux prés égale à 0.01 ou 0.0
+
+* 10 visiteurs ont une affinité parfaite (score théorique = 1.0) avec 10 hôtes mais ils sont incompatibles pour des raisons rédhibitoires : allergies, végétarisme non respecté, historique problématique.
 
 _Il est possible que votre fonction garantisse le respect des contraintes quel que soit l'exemple. Si vous pensez que c'est le cas, donnez des arguments pour convaincre._ 
+
+La fonction donnant un **score de compatibilité**, compris entre 0 et 1, et non un choix binaire (vrai ou faux) pour renseigner sur la compatibilité entre deux adolescents. Ainsi, il est garanti que l'algorithme garantisses les associations selon le meilleur scénario possible à chaque fois. Les associations où une des contraintes rhédibitoires n'est pas respectée possède inévitablement un score de compatibilité de 0. Elles sont ainsi ignorées, et les étudiants ne peuvent pas être mis ensemble.
+
 
 
 
