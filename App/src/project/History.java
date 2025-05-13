@@ -14,7 +14,18 @@ public class History extends DataType{
     }
 
     public boolean hasAlreadyBeenMatched(Teenager host, Teenager guest){
-        return false;
+
+        boolean found = false;
+
+        for (Affectation affectation : history){
+            if (affectation.getHost() == host) {
+                if (affectation.getGuest() == guest) {
+                    found = true;
+                }
+            }
+        }
+
+        return found;
     }
 
 }
