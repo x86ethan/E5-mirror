@@ -47,7 +47,7 @@ public class Affectation {
         return false;
     }
 
-    private double compatibility(History h) {
+    public double compatibility(History h) {
 
         /*
             First let's take in account preferences
