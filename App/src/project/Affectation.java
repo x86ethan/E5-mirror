@@ -1,17 +1,32 @@
-package project;
+package App;
 
 import java.util.Map;
 import java.util.ArrayList;
 import java.lang.Math;
 
 public class Affectation {
-    private double compatibility;
     private Teenager host;
     private Teenager guest;
 
     public Affectation(Teenager host,Teenager guest){
         this.host=host;
         this.guest=guest;
+    }
+
+    public void setHost (Teenager newHost) {
+        this.host = newHost;
+    }
+
+    public void setGuest (Teenager newGuest) {
+        this.guest = newGuest;
+    }
+
+    public Teenager getHost() {
+        return this.host;
+    }
+
+    public Teenager getGuest() {
+        return this.guest;
     }
 
     private static boolean arrayContains(String[] array, String element) {
@@ -32,7 +47,7 @@ public class Affectation {
         return false;
     }
 
-    private void computeCompatibility(History h) {
+    private double compatibility(History h) {
 
         /*
             First let's take in account preferences
@@ -42,28 +57,7 @@ public class Affectation {
         String[] guestHobbies = this.guest.getCriteriaValue("HOBBIES").split(",");
         String[] hostHobbies = this.host.getCriteriaValue("HOBBIES").split(",");
 
-        ArrayList<String> matchingHobbies = new ArrayList<String>();
-
-        for (String hobby : guestHobbies) {
-            if (arrayContains(hostHobbies, hobby)) {
-                matchingHobbies.add(hobby);
-            }
-        }
-
-        for (String hobby : hostHobbies) {
-            if (arrayContains(guestHobbies, hobby) && !(arrayListContains(matchingHobbies, hobby))) {
-                matchingHobbies.add(hobby);
-            }
-        }
-
-        int maxHobbiesLength;
-        if (hostHobbies.length > guestHobbies.length) {
-            maxHobbiesLength = hostHobbies.length;
-        } else {
-            maxHobbiesLength = guestHobbies.length;
-        }
-
-        double hobbiesCompatibility = (double) matchingHobbies.size() / (double) maxHobbiesLength;
+        double hobbiesCompatibility = getHobbiesCompatibility(guestHobbies, hostHobbies);
 
         int genderCompatibility = 0;
 
@@ -106,15 +100,40 @@ public class Affectation {
             historyCompatibility = false;
         }
 
+        double compatibility = 0;
         if (animalAllergyCompatibility && foodAllergyCompatibility && historyCompatibility) {
-            this.compatibility = (double) (genderCompatibility + hobbiesCompatibility + ageCompatibility) / 3.0;
+            compatibility = (double) (genderCompatibility + hobbiesCompatibility + ageCompatibility) / 3.0;
         } else {
-            this.compatibility = 0.0;
+            compatibility = 0.0;
         }
+
+        return compatibility;
     }
 
-    public double Compatibility(){
-        return this.compatibility;
+    private static double getHobbiesCompatibility(String[] guestHobbies, String[] hostHobbies) {
+        ArrayList<String> matchingHobbies = new ArrayList<String>();
+
+        for (String hobby : guestHobbies) {
+            if (arrayContains(hostHobbies, hobby)) {
+                matchingHobbies.add(hobby);
+            }
+        }
+
+        for (String hobby : hostHobbies) {
+            if (arrayContains(guestHobbies, hobby) && !(arrayListContains(matchingHobbies, hobby))) {
+                matchingHobbies.add(hobby);
+            }
+        }
+
+        int maxHobbiesLength;
+        if (hostHobbies.length > guestHobbies.length) {
+            maxHobbiesLength = hostHobbies.length;
+        } else {
+            maxHobbiesLength = guestHobbies.length;
+        }
+
+        return ((double) matchingHobbies.size() / (double) maxHobbiesLength);
     }
+
 
 }
