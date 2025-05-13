@@ -1,6 +1,7 @@
 package project;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 public class Teenager {
@@ -19,11 +20,18 @@ public class Teenager {
     }
 
     public int getAge(){
-        return 0;
+        return this.BIRTHDAY.until(LocalDate.now()).getYears();
     }
 
     public boolean hasCriteria(String key, String value){
         return false;
+    }
+
+    public String getCriteriaValue(String key) {
+        if (this.criteria.containsKey(key)) {
+            return this.criteria.get(key);
+        }
+        return "";
     }
 
     public double compatibility(Teenager other){
