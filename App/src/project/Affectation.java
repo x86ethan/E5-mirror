@@ -4,27 +4,55 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.lang.Math;
 
+/**
+ * Class affectation
+ * Used to manage an affectation of two Teenager objects (host & guest)
+ * @author Ethan Robert
+ * @version 2.0
+ */
+
 public class Affectation {
     private Teenager host;
     private Teenager guest;
 
+    /**
+     * Create an affectation between two Teenagers
+     * @param host the Teenager representing the host
+     * @param guest the Teenager representing the guest
+     */
     public Affectation(Teenager host,Teenager guest){
         this.host=host;
         this.guest=guest;
     }
 
+    /**
+     * Setter method for the host Teenager
+     * @param newHost the new host Teeanger
+     */
     public void setHost (Teenager newHost) {
         this.host = newHost;
     }
 
+    /**
+     * Setter method for the guest Teenager
+     * @param newGuest the new guest Teenager
+    **/
     public void setGuest (Teenager newGuest) {
         this.guest = newGuest;
     }
 
+    /**
+     * Getter method for the host Teenager
+     * @return the current host Teenager
+    **/
     public Teenager getHost() {
         return this.host;
     }
 
+    /**
+     * Getter method for the guest Teenager
+     * @return the current guest Teenager
+    **/
     public Teenager getGuest() {
         return this.guest;
     }
@@ -47,11 +75,24 @@ public class Affectation {
         return false;
     }
 
+    /**
+     * Calculate a compatibility score between the two current Teenagers in the affectation
+     * @return a score in the interval [0;1] following the compatibility of the teenagers in the affectation. The closest it is to 1, the more compatible they are.
+    **/
+    public double compatibility() {
+        return this.compatibility(null);
+    }
+
+    /**
+     * Calculate a compatibility score between the two current Teenagers in the affectation
+     * @param h history of teenager affectations, for better criteria matching
+     * @return a score in the interval [0;1] following the compatibility of the teenagers in the affectation. The closest it is to 1, the more compatible they are.
+    **/
     public double compatibility(History h) {
 
-        /*
-            First let's take in account preferences
-         */
+        /* =========== */
+        /* PREFERENCES */
+        /* =========== */
 
         // Hobbies parsing
         String[] guestHobbies = this.guest.getCriteriaValue("HOBBIES").split(",");
@@ -71,10 +112,10 @@ public class Affectation {
             ageCompatibility = 1;
         }
 
-        /*
-            And then redhibitory constraints
-         */
 
+        /* ======================= */
+        /* REDHIBITORY CONSTRAINTS */
+        /* ======================= */
 
         boolean animalAllergyCompatibility = true;
         if (this.host.hasCriteria("HOST_HAS_ANIMAL", "true") && this.guest.hasCriteria("GUEST_ANIMAL_ALLERGY", "true")) {
@@ -89,9 +130,11 @@ public class Affectation {
             foodAllergyCompatibility = false;
         }
 
-        /*
-            And then look at the history
-         */
+        
+        /* ======= */
+        /* HISTORY */
+        /* ======= */
+
         boolean historyCompatibility = true;
         double historyAffinity = 0;
         if (this.guest.hasCriteria("HISTORY", "same") && this.host.hasCriteria("HISTORY", "same") && !h.hasAlreadyBeenMatched(this.host, this.guest)) {
@@ -109,6 +152,7 @@ public class Affectation {
 
         return compatibility;
     }
+
 
     private static double getHobbiesCompatibility(String[] guestHobbies, String[] hostHobbies) {
         ArrayList<String> matchingHobbies = new ArrayList<String>();
@@ -133,6 +177,31 @@ public class Affectation {
         }
 
         return ((double) matchingHobbies.size() / (double) maxHobbiesLength);
+    }
+
+    @Override
+    /**
+     * Compare this object to another one 
+     * @param other the other object given for comparison
+     * @return boolean following their equality
+     */
+    public boolean equals(Object other) {
+        if (this == other) { return true; }
+
+        if (other == null) {
+            return false;
+        }
+
+        if (this.getClass() == other.getClass()) {
+            Affectation that = (Affectation) other;
+            if (that.getHost().equals(this.host) && that.getGuest().equals(this.guest)) {
+                return true;
+            }
+        }
+
+        return false;
+
+
     }
 
 

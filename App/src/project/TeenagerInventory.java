@@ -15,7 +15,7 @@ public class TeenagerInventory extends DataType{
         put("HOBBIES", 'T');
         put("GUEST_FOOD", 'T');
         put("GENDER", 'T');
-        put("PAIR_GENDER", 'T');
+        put("PAIR_GENDER", 'T'); 
         put("HISTORY", 'T');
     }};
 

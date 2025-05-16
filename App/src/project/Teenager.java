@@ -24,7 +24,7 @@ public class Teenager {
     }
 
     public boolean hasCriteria(String key, String value){
-        return false;
+        return (this.criteria.get(key).equals(value));
     }
 
     public String getCriteriaValue(String key) {
@@ -34,8 +34,12 @@ public class Teenager {
         return "";
     }
 
-    public double compatibility(Teenager other){
-        return 0;
+    public double compatibility(Teenager other, History history){
+        // Create temporary affectation to check its compatibility
+
+        Affectation aff = new Affectation(this, other);
+        return aff.compatibility(history);
+
     }
 
 }

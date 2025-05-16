@@ -2,9 +2,22 @@ package App;
 
 import java.util.ArrayList;
 
-public class History extends DataType{
+/**
+ * Class History 
+ * Used for better preferences matching for Teenagers affectations
+ * 
+ * @author Ethan Robert
+ * @version v2
+**/
+
+public class History extends DataType {
     private ArrayList<Affectation> history;
     
+    public History () {
+        this.history = new ArrayList<Affectation>();
+    }
+
+
     public boolean importCSV(String filename){
         return false;
     }
@@ -27,5 +40,7 @@ public class History extends DataType{
 
         return found;
     }
+
+
 
 }
