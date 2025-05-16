@@ -1,4 +1,4 @@
-package App;
+package fr.univlille.S201;
 
 public abstract class DataType {
     public abstract boolean importCSV(String filename);

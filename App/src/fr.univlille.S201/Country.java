@@ -1,4 +1,4 @@
-package App;
+package fr.univlille.S201;
 
 public enum Country {
     FR("France"),GE("Alemagne"),IT("Italie"),ES("Espagne");

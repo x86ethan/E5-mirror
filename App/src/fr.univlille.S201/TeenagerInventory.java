@@ -1,4 +1,4 @@
-package App;
+package fr.univlille.S201;
 
 import java.util.ArrayList;
 
