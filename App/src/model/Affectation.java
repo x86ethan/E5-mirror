@@ -1,4 +1,4 @@
-package fr.univlille.S201;
+package model;
 
 import java.util.Map;
 import java.util.ArrayList;
@@ -21,8 +21,8 @@ public class Affectation {
      * @param guest the Teenager representing the guest
      */
     public Affectation(Teenager host, Teenager guest){
-        this.host=host;
-        this.guest=guest;
+        this.host = host;
+        this.guest = guest;
     }
 
     /**
@@ -200,8 +200,6 @@ public class Affectation {
         }
 
         return false;
-
-
     }
 
 

@@ -1,4 +1,4 @@
-package fr.univlille.S201;
+package model;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

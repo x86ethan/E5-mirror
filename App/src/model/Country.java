@@ -1,4 +1,4 @@
-package fr.univlille.S201;
+package model;
 
 public enum Country {
     FR("France"),GE("Alemagne"),IT("Italie"),ES("Espagne");

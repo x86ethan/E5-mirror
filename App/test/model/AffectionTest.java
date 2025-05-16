@@ -1,4 +1,6 @@
-package App;
+package model;
+
+import org.junit.jupiter.api.BeforeEach;
 
 import java.time.LocalDate;
 import java.util.HashMap;

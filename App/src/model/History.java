@@ -1,4 +1,4 @@
-package fr.univlille.S201;
+package model;
 
 import java.util.ArrayList;
 
@@ -31,8 +31,8 @@ public class History extends DataType {
         boolean found = false;
 
         for (Affectation affectation : history){
-            if (affectation.getHost() == host) {
-                if (affectation.getGuest() == guest) {
+            if (affectation.getHost().equals(host)) {
+                if (affectation.getGuest().equals(guest)) {
                     found = true;
                 }
             }
@@ -40,7 +40,4 @@ public class History extends DataType {
 
         return found;
     }
-
-
-
 }
