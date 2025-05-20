@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Map;
 import java.util.ArrayList;
 import java.lang.Math;
 
@@ -20,9 +19,12 @@ public class Affectation {
      * @param host the Teenager representing the host
      * @param guest the Teenager representing the guest
      */
-    public Affectation(Teenager host, Teenager guest){
+    public Affectation(Teenager host, Teenager guest) throws AffectationException {
         this.host = host;
         this.guest = guest;
+
+        // Check the respect of redhibitory criteria with an exception mechanism
+        this.compatibility();
     }
 
     /**
@@ -79,7 +81,7 @@ public class Affectation {
      * Calculate a compatibility score between the two current Teenagers in the affectation
      * @return a score in the interval [0;1] following the compatibility of the teenagers in the affectation. The closest it is to 1, the more compatible they are.
     **/
-    public double compatibility() {
+    public double compatibility() throws AffectationException {
         return this.compatibility(null);
     }
 
@@ -88,7 +90,7 @@ public class Affectation {
      * @param h history of teenager affectations, for better criteria matching
      * @return a score in the interval [0;1] following the compatibility of the teenagers in the affectation. The closest it is to 1, the more compatible they are.
     **/
-    public double compatibility(History h) {
+    public double compatibility(History h) throws AffectationException {
 
         /* =========== */
         /* PREFERENCES */
@@ -122,6 +124,10 @@ public class Affectation {
             animalAllergyCompatibility = false;
         }
 
+        if (!animalAllergyCompatibility) {
+            throw new AffectationException("Animal allergy compatibility");
+        }
+
         boolean foodAllergyCompatibility = true;
 
         if (this.guest.hasCriteria("GUEST_FOOD", "vegetarian") && !this.host.hasCriteria("HOST_FOOD", "vegetarian")) {
@@ -130,17 +136,26 @@ public class Affectation {
             foodAllergyCompatibility = false;
         }
 
+        if (!foodAllergyCompatibility) {
+            throw new AffectationException("Food allergy compatibility");
+        }
+
         
         /* ======= */
         /* HISTORY */
         /* ======= */
 
         boolean historyCompatibility = true;
-        double historyAffinity = 0;
         if (this.guest.hasCriteria("HISTORY", "same") && this.host.hasCriteria("HISTORY", "same") && !h.hasAlreadyBeenMatched(this.host, this.guest)) {
             historyCompatibility = false;
         } else if (h.hasAlreadyBeenMatched(this.guest, this.host) && (this.host.hasCriteria("HISTORY", "other") || this.guest.hasCriteria("HISTORY", "other"))) {
             historyCompatibility = false;
+        } else if (h.equals(null)) {
+            historyCompatibility = true;
+        }
+
+        if (!historyCompatibility) {
+            throw new AffectationException("History compatibility");
         }
 
         double compatibility = 0;
@@ -179,12 +194,12 @@ public class Affectation {
         return ((double) matchingHobbies.size() / (double) maxHobbiesLength);
     }
 
-    @Override
     /**
      * Compare this object to another one 
      * @param other the other object given for comparison
      * @return boolean following their equality
      */
+    @Override
     public boolean equals(Object other) {
         if (this == other) { return true; }
 
