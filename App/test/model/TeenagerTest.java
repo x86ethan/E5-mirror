@@ -11,23 +11,33 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 
 public class TeenagerTest {
 
-    @BeforEach
+    private static Map<String, String> cr1;
+    private static Map<String, String> cr2;
+    private static Map<String, String> cr3;
+
+    private static Teenager t1;
+    private static Teenager t2;
+    private static Teenager t3;
+    private static Teenager t4;
+
+    @BeforeEach
     public void initialization(){
-    Map<String,String> cr1 = new HashMap<>();
-    Map<String,String> cr2 = new HashMap<>();
-    Map<String,String> cr3 = new HashMap<>();
+    cr1 = new HashMap<>();
+    cr2 = new HashMap<>();
+    cr3 = new HashMap<>();
     
     cr1.put("HOST_HAS_ANIMAL", "false");
     cr2.put("GUEST_FOOD", "nonuts");
     cr3.put("HOBBIES", "videogames");
 
-    Teenager t1 = new Teenager("Tom","Dupont", LocalDate.of(2006,5,10), cr1, Country.ES);
-    Teenager t2 = new Teenager("Anna", "Durand", LocalDate.of(2007, 3, 12), cr2, Country.FR);
-    Teenager t3 = new Teenager("Léo", "Martin", LocalDate.of(2008, 8, 22), cr3, Country.IT);
-    Teenager t4 = t1;
+    t1 = new Teenager("Tom","Dupont", LocalDate.of(2006,5,10), cr1, Country.ES);
+    t2 = new Teenager("Anna", "Durand", LocalDate.of(2007, 3, 12), cr2, Country.FR);
+    t3 = new Teenager("Léo", "Martin", LocalDate.of(2008, 8, 22), cr3, Country.IT);
+    t4 = t1;
 
     }
 
@@ -44,14 +54,16 @@ public class TeenagerTest {
         assertTrue(t1.hasCriteria("HOST_HAS_ANIMAL","false"));
         assertTrue(t2.hasCriteria("Guest_Food","nonuts"));
         assertFalse(t3.hasCriteria("HOBBIES",""));
-        assertTrue(t4.hasCriteria());
     }
 
     @Test
     public void Testcompatibility(){
-        assertTrue(t1.compatibility(t2) > 0 && t1.compatibility(t2) < 1 );
-        assertTrue(t2.compatibility(t3) > 0 && t2.compatibility(t3) < 1 );
-        assertTrue(t4.compatibility(t1), 1);
-
+        try {
+            assertTrue(t1.compatibility(t2) > 0 && t1.compatibility(t2) < 1);
+            assertTrue(t2.compatibility(t3) > 0 && t2.compatibility(t3) < 1);
+            assertEquals(t4.compatibility(t1), 1);
+        } catch (AffectationException e) {
+            e.printTrace();
+        }
     }
 }

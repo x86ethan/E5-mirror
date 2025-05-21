@@ -13,10 +13,21 @@ import java.util.ArrayList;
 public class History extends DataType {
     private ArrayList<Affectation> history;
     
-    public History () {
-        this.history = new ArrayList<Affectation>();
+    public History (ArrayList<Affectation> pastAffectations) {
+        this.history = pastAffectations;
     }
 
+    public History () {
+        this(new ArrayList<Affectation>());
+    }
+
+    public void addAffectation(Affectation affectation) {
+        this.history.add(affectation);
+    }
+
+    public void addAffectations(ArrayList<Affectation> affectations) {
+        this.history.addAll(affectations);
+    }
 
     public boolean importCSV(String filename){
         return false;
@@ -26,7 +37,7 @@ public class History extends DataType {
         return false;
     }
 
-    public boolean hasAlreadyBeenMatched(Teenager host, Teenager guest){
+    public boolean hasAlreadyBeenMatched(Teenager host, Teenager guest) {
 
         boolean found = false;
 

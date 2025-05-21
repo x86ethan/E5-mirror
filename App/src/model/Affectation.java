@@ -27,6 +27,13 @@ public class Affectation {
         this.compatibility();
     }
 
+    public Affectation (Teenager host, Teenager guest, History h) throws AffectationException {
+        this.host = host;
+        this.guest = guest;
+
+        this.compatibility(h);
+    }
+
     /**
      * Setter method for the host Teenager
      * @param newHost the new host Teeanger
@@ -119,15 +126,17 @@ public class Affectation {
         /* REDHIBITORY CONSTRAINTS */
         /* ======================= */
 
+        // ANIMAL ALLERGY
         boolean animalAllergyCompatibility = true;
         if (this.host.hasCriteria("HOST_HAS_ANIMAL", "true") && this.guest.hasCriteria("GUEST_ANIMAL_ALLERGY", "true")) {
             animalAllergyCompatibility = false;
         }
 
         if (!animalAllergyCompatibility) {
-            throw new AffectationException("Animal allergy compatibility");
+            throw new AffectationException("ANIMAL_ALLERGY");
         }
 
+        // FOOD ALLERGY
         boolean foodAllergyCompatibility = true;
 
         if (this.guest.hasCriteria("GUEST_FOOD", "vegetarian") && !this.host.hasCriteria("HOST_FOOD", "vegetarian")) {
@@ -137,7 +146,7 @@ public class Affectation {
         }
 
         if (!foodAllergyCompatibility) {
-            throw new AffectationException("Food allergy compatibility");
+            throw new AffectationException("FOOD_ALLERGY");
         }
 
         
@@ -146,16 +155,16 @@ public class Affectation {
         /* ======= */
 
         boolean historyCompatibility = true;
-        if (this.guest.hasCriteria("HISTORY", "same") && this.host.hasCriteria("HISTORY", "same") && !h.hasAlreadyBeenMatched(this.host, this.guest)) {
-            historyCompatibility = false;
-        } else if (h.hasAlreadyBeenMatched(this.guest, this.host) && (this.host.hasCriteria("HISTORY", "other") || this.guest.hasCriteria("HISTORY", "other"))) {
-            historyCompatibility = false;
-        } else if (h.equals(null)) {
-            historyCompatibility = true;
+        if (h != null) {
+            if (this.guest.hasCriteria("HISTORY", "same") && this.host.hasCriteria("HISTORY", "same") && !h.hasAlreadyBeenMatched(this.host, this.guest)) {
+                historyCompatibility = false;
+            } else if (h.hasAlreadyBeenMatched(this.host, this.guest) && (this.host.hasCriteria("HISTORY", "other") || this.guest.hasCriteria("HISTORY", "other"))) {
+                historyCompatibility = false;
+            }
         }
 
         if (!historyCompatibility) {
-            throw new AffectationException("History compatibility");
+            throw new AffectationException("HISTORY");
         }
 
         double compatibility = 0;

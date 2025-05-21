@@ -24,7 +24,11 @@ public class Teenager {
     }
 
     public boolean hasCriteria(String key, String value){
-        return (this.criteria.get(key).equals(value));
+        try {
+            return (this.criteria.get(key).equals(value));
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     public String getCriteriaValue(String key) {
@@ -34,12 +38,21 @@ public class Teenager {
         return "";
     }
 
-    public double compatibility(Teenager other, History history){
+    public double compatibility(Teenager other, History history) throws AffectationException {
         // Create temporary affectation to check its compatibility
 
         Affectation aff = new Affectation(this, other);
         return aff.compatibility(history);
 
+    }
+
+    public double compatibility(Teenager other) throws AffectationException {
+        Affectation aff = new Affectation(this, other);
+        return aff.compatibility();
+    }
+
+    public String toString() {
+        return this.firstname + " " + this.name + " (age " + this.getAge() + ")";
     }
 
 }
