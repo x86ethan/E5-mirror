@@ -2,3 +2,10 @@ App/bin/
 App/doc/
 App/.vscode/
 **/*.class
+S2.02.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.vscode/settings.json
+out/production/S2.02/App2.iml
+.idea/libraries/junit_platform_console_standalone_1_13_0_M3.xml
