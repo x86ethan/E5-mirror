@@ -55,4 +55,7 @@ public class Teenager {
         return this.firstname + " " + this.name + " (age " + this.getAge() + ")";
     }
 
+    public Country getCountry() {
+        return this.country;
+    }
 }
