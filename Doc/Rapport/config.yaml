@@ -1,9 +1,0 @@
-input-files:
-   - src/S1.md
-metadata:
-  title: "SAÉ S2.01/02"
-  author: "Ethan Robert, Jonas Facon, Antonin Marouzè"
-  date: "Mai 2025"
-  encoding: "UTF-8"
-toc: true
-number-sections: true

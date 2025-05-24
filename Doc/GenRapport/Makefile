@@ -18,9 +18,3 @@ clean:
 pdf: prerequisites-pdflatex clean
 	@echo "Génération de Output.pdf"
 	@pandoc --defaults=config.yaml -o $(PWD)/../Rapport.pdf
-
-html: prerequisites clean
-	@echo "Génération de Output.html"
-	@pandoc --defaults=config.yaml -o $(PWD)/../Rapport.html --embed-resources --standalone || (pandoc --defaults=config.yaml -o $(PWD)/dist/Output.html --self-contained --standalone)
-
-all: pdf html
