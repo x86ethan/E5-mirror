@@ -196,7 +196,7 @@ public class Affectation {
         // Just French
         if (this.host.getCountry() == Country.FR || this.guest.getCountry() == Country.FR) {
             if (matchingHobbies.isEmpty()) {
-                throw AffectationException("FRENCH");
+                throw new AffectationException("FRENCH");
             }
         }
 

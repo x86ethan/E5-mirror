@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @version v2
 **/
 
-public class History extends DataType {
+public class History implements DataType {
     private ArrayList<Affectation> history;
     
     public History (ArrayList<Affectation> pastAffectations) {
@@ -29,7 +29,7 @@ public class History extends DataType {
         this.history.addAll(affectations);
     }
 
-    public boolean importCSV(String filename){
+    public boolean importCSV(String filename, boolean header){
         return false;
     }
 
