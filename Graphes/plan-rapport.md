@@ -66,10 +66,10 @@ _Donnez un exemple de quatre hôtes A, B, C, D et quatre visiteurs W, X, Y, Z. P
 | Z    | 24/01/2004 | reading, cooking, running      | male   | male        |
 
 Solution 1 :
-- W ← C ✅ 
-- Z ← B ✅ 
-- Y ← A ✅ 
-- X ← D ✅ 
+- W <- C Y
+- Z <- B Y
+- Y <- A Y
+- X <- D Y
 
 ## Score d'affinité
 
@@ -372,10 +372,10 @@ _Ci-dessous, H1, H2, etc. désignent des noms d'hôtes et V1, V2, etc désignent
 _Donnez au moins quatre paires hôte-visiteur (H1, V1), (H2, V2), (H3, V3), (H4, V4), ... que vous considérez quasi équivalents pour l'affectation. Certaines de ces paires doivent ne pas respecter les contraintes considérées rédhibitoires dans la Version 2, d'autres doivent les respecter. Ces exemples doivent illustrer l'équilibrage que vous faites entre l'incompatibilité d'une part et l'affinité d'autre part : combien et quel type d'affinité permet de compenser combien et quel type d'incompatibilité. Les exemples seront accompagnés de commentaires expliquant vos choix._
 | Pair     | Contraintes respectées ? | Affinité estimée |Commentaire  |
 | -------- | ----- | ------ | ------- |
-| (H1, V1) | ❌ Allergie + animal | 0.95 | Très forte affinité car même hobbies,mais V1 est allergique aux animaux et H1 a un animal|
-| (H2, V2) | ✅  | 0.65 | Compatibles sur hobbies même hobbies, âge proche, préférences de genre OK, aucune contrainte violée. Affinité moyenne mais sûre.|
-| (H3, V3) | ✅  | 0.90 | Très bonne affinité même hobbies, même genre (F-F), historique compatible. Pas de contrainte rédhibitoire. Une des paires avec le plus de potentiel|
-| (H4, V4) | ❌ Allergie + animal| 0.85 | H4 a un animal et V4 est allergique, donc incompatibles. Pourtant, très forte affinité car même hobbies ,âge et genre compatibles.|
+| (H1, V1) | F Allergie + animal | 0.95 | Très forte affinité car même hobbies,mais V1 est allergique aux animaux et H1 a un animal|
+| (H2, V2) | Y | 0.65 | Compatibles sur hobbies même hobbies, âge proche, préférences de genre OK, aucune contrainte violée. Affinité moyenne mais sûre.|
+| (H3, V3) | Y | 0.90 | Très bonne affinité même hobbies, même genre (F-F), historique compatible. Pas de contrainte rédhibitoire. Une des paires avec le plus de potentiel|
+| (H4, V4) | F Allergie + animal| 0.85 | H4 a un animal et V4 est allergique, donc incompatibles. Pourtant, très forte affinité car même hobbies ,âge et genre compatibles.|
 
 
 ## Score d'affinité
@@ -455,7 +455,6 @@ Fonction computeCompatibility(h de type History):
         this.compatibility = 0.0
     Fin Si
 Fin Fonction
-
 ```
 
 ## Retour sur l'exemple
@@ -464,57 +463,57 @@ _Donnez le résultat de la fonction `score_affinité_3` pour les exemples d'équ
 
 _**Remarque**: Deux scores ne sont pas proches ou éloignés dans l'absolu ; cela dépend de la valeur minimale et la valeur maximale que peut prendre le score. Par exemple, les nombres 10 et 20 sont "proches" à l'échelle de l'intervalle de 0 à 1000, mais ne sont pas "proches" à l'échelle de l'intervalle 0 à 30._
 
-    🧩 (H1, V1)
+     (H1, V1)
 
-    H1 a un animal & V1 est allergique -> ❌ rédhibitoire
+    H1 a un animal & V1 est allergique -> NOM_EQUIPE est parmi A1, A2, ..., B1, ..., E6, E7, E8 F rédhibitoire
 
-    Hobbies communs : reading, hiking -> 2 en commun / max(3,3) = 2/3 ≈ 0.666
+    Hobbies communs : reading, hiking -> 2 en commun / max(3,3) = 2/3  environ  0.666
 
-    Genre : F (host) / M (PAIR_GENDER) -> ✅
+    Genre : F (host) / M (PAIR_GENDER) -> Y
 
-    Âge : 2006 vs 2006 -> ✅
+    Âge : 2006 vs 2006 -> Y
 
-    Résultat final : malgré affinité élevée, compatibilité = 0.0 (cause allergie)
+    Résultat final : malgré affinité élevée, compatibilité = 0.0 (cause allergie)NOM_EQUIPE est parmi A1, A2, ..., B1, ..., E6, E7, E8
 
-    🧩 (H2, V2)
+     (H2, V2)
 
     Aucune contrainte violée
 
-    Hobbies : football, music en commun -> 1 commun / max(3,3) = 1/3 ≈ 0.333
+    Hobbies : football, music en commun -> 1 commun / max(3,3) = 1/3  environ  0.333
 
-    Genre : M / F -> ✅
+    Genre : M / F -> Y
 
-    Âge : 2005 vs 2005 -> ✅
+    Âge : 2005 vs 2005 -> Y
 
     Résultat : (1 + 0.333 + 1)/3 = 0.777
 
-    🧩 (H3, V3)
+     (H3, V3)
 
     Aucune contrainte violée
 
     Hobbies : drawing, reading, cinema -> 3/3 = 1.0
 
-    Genre : F / F -> ✅
+    Genre : F / F -> Y
 
-    Âge : 2007 vs 2006 -> ✅
+    Âge : 2007 vs 2006 -> Y
 
     Résultat : (1 + 1 + 1)/3 = 1.0
 
-    🧩 (H4, V4)
+     (H4, V4)
 
-    H4 a un animal & V4 est allergique -> ❌ rédhibitoire
+    H4 a un animal & V4 est allergique -> F rédhibitoire
 
     Hobbies communs : basketball, music, cinema -> 3/3 = 1.0
 
-    Genre : M / F -> ✅
+    Genre : M / F -> Y
 
-    Âge : 2004 vs 2004 -> ✅
+    Âge : 2004 vs 2004 -> Y
 
     Résultat final : compatibilité = 0.0
 
 | Pair     | Contraintes rédhibitoires | Affinité brute (avant invalidation) | Score final |
 | -------- | ------------------------- | ----------------------------------- | ----------- |
-| (H1, V1) | Oui (animal)              | ≈ 0.888                             | 0.0         |
-| (H2, V2) | Non                       | ≈ 0.777                             | 0.777       |
+| (H1, V1) | Oui (animal)              | environ 0.888                             | 0.0         |
+| (H2, V2) | Non                       | environ 0.777                             | 0.777       |
 | (H3, V3) | Non                       | 1.0                                 | 1.0         |
 | (H4, V4) | Oui (animal)              | 1.0                                 | 0.0         |
