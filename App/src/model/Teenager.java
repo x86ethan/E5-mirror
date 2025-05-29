@@ -1,7 +1,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 public class Teenager {
@@ -17,6 +16,22 @@ public class Teenager {
         this.BIRTHDAY=birthday;
         this.criteria=criteria;
         this.country=country;
+    }
+
+    public LocalDate getBIRTHDAY() {
+        return BIRTHDAY;
+    }
+
+    public Map<String, String> getCriteria() {
+        return criteria;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getAge(){
