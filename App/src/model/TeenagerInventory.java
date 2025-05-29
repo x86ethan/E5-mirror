@@ -30,41 +30,46 @@ public class TeenagerInventory implements DataType{
         this.teenagers = new ArrayList<>();
     }
 
-    private Teenager lineToTeen(String line){
+    public ArrayList<Teenager> getTeenagers() {
+        return this.teenagers;
+    }
+
+    private Teenager lineToTeen(String line, String delimiter) throws IOException{
         Scanner s = new Scanner(line);
-        String forename, name, country, tmp;
+        s.useDelimiter(delimiter);
+        String forename, name, tmp;
         LocalDate date;
+        Country country;
         Map<String, String> criteria = new HashMap<>();
 
         forename = s.next();
         name = s.next();
-        country = s.next();
+        country = Country.valueOf(s.next());
         date = LocalDate.parse(s.next());
         
         int cpt = 0;
-        ArrayList<String> keys = new ArrayList<>(TeenagerInventory.CriteriaMap.keySet());
+        String[] keys = new String[]{"GUEST_ANIMAL_HAS_ALLERGY", "HOST_ANIMAL", "GUEST_FOOD_CONSTRAINT", "HOST_FOOD", "HOBBIES", "GENDER", "PAIR_GENDER", "HISTORY"};
         while (s.hasNext()) {
             tmp = s.next();
             if (!tmp.equals("")){
-                criteria.put(keys.get(cpt), tmp);
+                criteria.put(keys[cpt], tmp);
             }
             cpt ++;
         }
 
         s.close();
-        return new Teenager(forename, name, date, criteria, Country.valueOf(country));
+        return new Teenager(forename, name, date, criteria, country);
     }
 
     public boolean importCSV(String filename, boolean header){
         try(BufferedReader br = new BufferedReader(
                 new FileReader(System.getProperty("user.dir")+File.separator+"res"+File.separator+filename))) {
-            StringBuilder sb = new StringBuilder();
             String line = br.readLine();
             if (header){
                 line = br.readLine();
             }
             while(line != null) {
-                this.teenagers.add(this.lineToTeen(line));
+                this.teenagers.add(this.lineToTeen(line, ";"));
                 line = br.readLine();
             }
         } catch(FileNotFoundException e) {
@@ -74,6 +79,9 @@ public class TeenagerInventory implements DataType{
             System.out.println("Reading error: " + e.getMessage());
             e.printStackTrace();
             return false;
+        } catch (Exception e){
+            System.out.println("Unreadable thing in line: "); e.printStackTrace();
+            return false;
         }
         return true;
     }
@@ -82,8 +90,12 @@ public class TeenagerInventory implements DataType{
         return false;
     }
 
-    public void addTeenager(Teenager teen){
-
+    public boolean addTeenager(Teenager teen){
+        if(teen != null){
+            this.teenagers.add(teen);
+            return true;
+        }
+        return false;
     }
 
     public ArrayList<Teenager> findTeenagerByCountry(Country country){
@@ -93,5 +105,4 @@ public class TeenagerInventory implements DataType{
     public ArrayList<Teenager> findTeenagerByCriterion(Country country){
         return new ArrayList<>();
     }
-
 }
