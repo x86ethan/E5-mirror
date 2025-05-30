@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -25,6 +26,9 @@ public class TeenagerInventory implements DataType{
         put("PAIR_GENDER", 'T'); 
         put("HISTORY", 'T');
     }};
+
+    public static String[] keys = new String[]{"GUEST_ANIMAL_HAS_ALLERGY", "HOST_ANIMAL", "GUEST_FOOD_CONSTRAINT", "HOST_FOOD", "HOBBIES", "GENDER", "PAIR_GENDER", "HISTORY"};
+        
 
     TeenagerInventory(){
         this.teenagers = new ArrayList<>();
@@ -48,11 +52,10 @@ public class TeenagerInventory implements DataType{
         date = LocalDate.parse(s.next());
         
         int cpt = 0;
-        String[] keys = new String[]{"GUEST_ANIMAL_HAS_ALLERGY", "HOST_ANIMAL", "GUEST_FOOD_CONSTRAINT", "HOST_FOOD", "HOBBIES", "GENDER", "PAIR_GENDER", "HISTORY"};
-        while (s.hasNext()) {
+        while (s.hasNext() && TeenagerInventory.keys.length > cpt) {
             tmp = s.next();
             if (!tmp.equals("")){
-                criteria.put(keys[cpt], tmp);
+                criteria.put(TeenagerInventory.keys[cpt], tmp);
             }
             cpt ++;
         }
@@ -86,8 +89,32 @@ public class TeenagerInventory implements DataType{
         return true;
     }
 
+    public String teenToLine(Teenager teen){
+        StringBuilder line = new StringBuilder();
+        line.append(teen.getFirstname()+";"+teen.getName()+";"+teen.getCountry()+";"+teen.getBIRTHDAY()+";");
+        for(String key : TeenagerInventory.keys){
+            if(teen.getCriteria().containsKey(key)){
+                line.append(teen.getCriteriaValue(key)+";");
+            }else{
+                line.append(";");
+            }
+        }
+        return line.toString().substring(0, line.length()-1);
+    }
+
+
     public boolean exportCSV(String filename){
-        return false;
+        try(PrintWriter pw = new PrintWriter(new File(System.getProperty("user.dir")+File.separator+"res"+File.separator+filename))) {
+            pw.println("FORENAME;NAME;COUNTRY;BIRTH_DATE;GUEST_ANIMAL_HAS_ALLERGY;HOST_ANIMAL;GUEST_FOOD_CONSTRAINT;HOST_FOOD;HOBBIES;GENDER;PAIR_GENDER;HISTORY");
+            for(Teenager teen: this.teenagers){
+                pw.println(teenToLine(teen));
+            }
+        } catch(IOException e) {
+            System.out.println("Writing error: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public boolean addTeenager(Teenager teen){
