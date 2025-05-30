@@ -14,6 +14,7 @@ import java.util.Map;
 public class TeenagerInventoryTest {
     private static String filename1;
     private static String filename2;
+    private static String filename3;
 
     private static Map<String, String> cr1;
     private static Map<String, String> cr2;
@@ -26,11 +27,13 @@ public class TeenagerInventoryTest {
     private static TeenagerInventory ti1;
     private static TeenagerInventory ti2;
     private static TeenagerInventory ti3;
+    private static TeenagerInventory ti4;
 
     @BeforeAll
     public static void initialization(){
         filename1 = "Adolescent.csv";
         filename2 = "Adolescent2.csv";
+        filename3 = "ExportTest.csv";
 
         cr1 = new HashMap<>();
         cr2 = new HashMap<>();
@@ -47,6 +50,7 @@ public class TeenagerInventoryTest {
         ti1 = new TeenagerInventory();
         ti2 = new TeenagerInventory();
         ti3 = new TeenagerInventory();
+        ti4 = new TeenagerInventory();
     }
 
     @Test
@@ -97,5 +101,14 @@ public class TeenagerInventoryTest {
         assertEquals("same", lastTeen.getCriteria().get("HISTORY"));
     }
 
-    
+    @Test
+    public void testExportation(){
+        assertFalse(ti3.importCSV(filename2, false));
+        assertTrue(ti3.importCSV(filename2, true));
+
+        assertTrue(ti3.exportCSV(filename3));
+        assertTrue(ti4.importCSV(filename3, true));
+
+        assertTrue(ti3.getTeenagers().equals(ti4.getTeenagers()));
+    }
 }

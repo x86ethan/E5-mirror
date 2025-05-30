@@ -1,12 +1,12 @@
 FORENAME;NAME;COUNTRY;BIRTH_DATE;GUEST_ANIMAL_HAS_ALLERGY;HOST_ANIMAL;GUEST_FOOD_CONSTRAINT;HOST_FOOD;HOBBIES;GENDER;PAIR_GENDER;HISTORY
 Adonia;A;FR;2004-03-15;no;yes;;vegetarian;sports,technology;female;;other
 Bellatrix;B;GE;2005-07-22;yes;no;nonuts;;culture,science;female;;same
-Callista;C;IT;2006-11-01;no;yes;vegetarian,nonuts;science,reading;male;;other
+Callista;C;IT;2006-11-01;no;yes;vegetarian;nonuts;science,reading;male;;other
 Xolag;X;ES;2004-01-10;;no;;vegetarian;culture,technology;male;;
 Yak;Y;FR;2007-09-05;;yes;nonuts;;science,reading;male;;same
-Zander;Z;GE;2003-04-18;;no;vegetarian;nonuts,technology;male;;;
+Zander;Z;GE;2003-04-18;;no;vegetarian;nonuts;technology;male;;
 Elara;E;IT;2005-02-28;no;yes;;vegetarian;reading,gaming;female;;other
-Finnian;F;ES;2006-08-12;yes;no;vegetarian;gaming,music;male;;same
+Finnian;F;ES;2006-08-12;yes;no;vegetarian;;gaming,music;male;;same
 Gaius;G;FR;2004-12-03;no;yes;nonuts;vegetarian;music,cooking;male;;other
 Hesper;H;GE;2007-06-19;;no;;nonuts;cooking,sports;female;;
 Iris;I;IT;2003-10-25;;yes;vegetarian;;sports,technology;female;;same

@@ -73,4 +73,28 @@ public class Teenager {
     public Country getCountry() {
         return this.country;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null){return false;}
+        if (this == obj){return true;}
+        if (this.getClass() != obj.getClass()){return false;}
+        Teenager other = (Teenager) obj;
+        if (this.firstname == null){
+            if(other.firstname != null){return false;}
+        }else if (!this.firstname.equals(other.firstname)){return false;}
+        if (this.name == null){
+            if(other.name != null){return false;}
+        }else if (!this.name.equals(other.name)){return false;}
+        if (this.BIRTHDAY == null){
+            if(other.BIRTHDAY != null){return false;}
+        }else if (!this.BIRTHDAY.equals(other.BIRTHDAY)){return false;}
+        if (this.country == null){
+            if(other.country != null){return false;}
+        }else if (!this.country.equals(other.country)){return false;}
+        if (this.criteria == null){
+            if(other.criteria != null){return false;}
+        }else if (!this.criteria.equals(other.criteria)){return false;}
+        return true;
+    }
 }
