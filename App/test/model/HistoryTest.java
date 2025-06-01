@@ -2,55 +2,59 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HistoryTest {
-    private static History h1;
-    private static History h2;
-    private static History h3;
+    private static Map<String, String> cr1;
+    private static Map<String, String> cr2;
+    private static Teenager host;
+    private static Teenager guest;
+    private static Affectation affectation;
+    private static History history;
 
-    private static Teenager t1;
-    private static Teenager t2;
-    private static Teenager t3;
-    private static Teenager t4;
-    private static Teenager t5;
-    private static Teenager t6;
-
-    @BeforeEach
-    public void initialization(){
-        h1 = new History();
-        h2 = new History();
-        h3 = new History();
-        h1.importCSV("./test/data/HistorySample1", true);
-        h2.importCSV("./test/data/HistorySample2", true);
-        h3.importCSV("./test/data/HistorySample3", true);
-
-        t1 = new Teenager("Bernard", "Luca", LocalDate.of(2006, 7, 10), null, Country.FR);
-        t2 = new Teenager("Bernard", "Jonas", LocalDate.of(2006, 11, 25), null, Country.IT);
-        t3 = new Teenager("Kowalski", "Lucie", LocalDate.of(2006, 8, 25), null, Country.ES);
-        t4 = new Teenager("Smith", "Noah", LocalDate.of(2006, 01, 03), null, Country.IT);
-        t5 = new Teenager("Dupont", "Thomas", LocalDate.of(2005, 05, 14), null, Country.ES);
+    @BeforeAll
+    public static void initialization() {
+        cr1 = new HashMap<>();
+        cr2 = new HashMap<>();
+        cr1.put("HOST_HAS_ANIMAL", "false");
+        cr1.put("HOST_FOOD", "nonuts");
+        cr2.put("GUEST_FOOD", "nonuts");
+        
+        host = new Teenager("Anna", "Durand", LocalDate.of(2007, 3, 12), cr1, Country.FR);
+        guest = new Teenager("Léo", "Martin", LocalDate.of(2008, 8, 22), cr2, Country.IT);
+        try {
+            affectation = new Affectation(host, guest);
+        } catch (Exception e) {e.printStackTrace();}
+            
+        history = new History();
+        history.addAffectation(affectation);
     }
 
     @Test
-    public void testInitialization(){
-        
+    public void testAddAffectation() {
+        history.addAffectation(affectation);
+        assertTrue(history.hasAlreadyBeenMatched(host, guest));
+
+        Map<String, String> cr3 = new HashMap<>();
+        cr3.put("HOBBIES", "videogames");
+
+        Teenager other = new Teenager("Léo", "Martin", LocalDate.of(2008, 8, 22), cr3, Country.IT);
+        assertFalse(history.hasAlreadyBeenMatched(host, other));
     }
 
     @Test
-    public void testHasAlreadyBeenMatched(){
-        assertTrue(h2.hasAlreadyBeenMatched(t1, t2));
-        assertTrue(h1.hasAlreadyBeenMatched(t1, t3));
-        assertTrue(h3.hasAlreadyBeenMatched(t4, t5));
-        
-        assertFalse(h2.hasAlreadyBeenMatched(t1, t2));
-        assertFalse(h3.hasAlreadyBeenMatched(t1, t2));
-        assertFalse(h1.hasAlreadyBeenMatched(t3, t3));
+    public void testImportCSV() {
+        History history = new History();
+
+        boolean success = history.importCSV("History.csv", true);
+        assertTrue(success);
+        assertEquals(50, history.getHistory().size());
     }
 }
