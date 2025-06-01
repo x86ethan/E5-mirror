@@ -92,6 +92,19 @@ public class Affectation {
         return this.compatibility(null);
     }
 
+    public static String printArray(String[] array) {
+        String string = "[";
+
+        for (int i = 0 ; i < array.length ; i++) {
+            string += array[i];
+            if (i < array.length - 1) {
+                string += ", ";
+            }
+        }
+
+        return string += "]";
+    }
+
     /**
      * Calculate a compatibility score between the two current Teenagers in the affectation
      * @param h history of teenager affectations, for better criteria matching
@@ -112,7 +125,7 @@ public class Affectation {
         // Just French
         if (this.host.getCountry() == Country.FR || this.guest.getCountry() == Country.FR) {
             if (hobbiesCompatibility == 0) {
-                throw new AffectationException("FRENCH");
+                throw new AffectationException("(" + this.host + ", " + this.guest + ") FRENCH");
             }
         }
 
@@ -140,7 +153,7 @@ public class Affectation {
         }
 
         if (!animalAllergyCompatibility) {
-            throw new AffectationException("ANIMAL_ALLERGY");
+            throw new AffectationException("(" + this.host + ", " + this.guest + ") ANIMAL_ALLERGY");
         }
 
         // FOOD ALLERGY
@@ -148,12 +161,14 @@ public class Affectation {
 
         if (this.guest.hasCriteria("GUEST_FOOD", "vegetarian") && !this.host.hasCriteria("HOST_FOOD", "vegetarian")) {
             foodAllergyCompatibility = false;
+            System.out.println("hello");
         } else if (this.guest.hasCriteria("GUEST_FOOD", "nonuts") && !this.host.hasCriteria("HOST_FOOD", "nonuts")) {
+            System.out.println("hello again");
             foodAllergyCompatibility = false;
         }
 
         if (!foodAllergyCompatibility) {
-            throw new AffectationException("FOOD_ALLERGY");
+            throw new AffectationException("(" + this.host + ", " + this.guest + ") FOOD_ALLERGY");
         }
 
         
@@ -171,7 +186,7 @@ public class Affectation {
         }
 
         if (!historyCompatibility) {
-            throw new AffectationException("HISTORY");
+            throw new AffectationException("(" + this.host + ", " + this.guest + ") HISTORY");
         }
 
         double compatibility = 0;

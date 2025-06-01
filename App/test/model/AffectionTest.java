@@ -59,6 +59,8 @@ public class AffectionTest {
         cr1.put("HOST_HAS_ANIMAL", "false");
         cr1.put("HOST_FOOD", "nonuts");
         cr2.put("GUEST_FOOD", "nonuts");
+        cr2.put("HOBBIES", "videogames");
+        cr1.put("HOBBIES", "videogames");
         cr3.put("HOBBIES", "videogames");
 
         t1 = new Teenager("Tom","Dupont", LocalDate.of(2006,5,10), cr1, Country.ES);

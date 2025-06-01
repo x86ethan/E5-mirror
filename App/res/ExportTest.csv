@@ -1,4 +1,4 @@
-FORENAME;NAME;COUNTRY;BIRTH_DATE;GUEST_ANIMAL_HAS_ALLERGY;HOST_ANIMAL;GUEST_FOOD_CONSTRAINT;HOST_FOOD;HOBBIES;GENDER;PAIR_GENDER;HISTORY;FORENAME;NAME;COUNTRY;BIRTH_DATE;GUEST_ANIMAL_HAS_ALLERGY;HOST_ANIMAL;GUEST_FOOD_CONSTRAINT;HOST_FOOD;HOBBIES;GENDER;PAIR_GENDER;HISTORY
+FORENAME;NAME;COUNTRY;BIRTH_DATE;GUEST_ANIMAL_HAS_ALLERGY;HOST_ANIMAL;GUEST_FOOD_CONSTRAINT;HOST_FOOD;HOBBIES;GENDER;PAIR_GENDER;HISTORY
 Adonia;A;GE;2004-03-15;no;yes;;vegetarian;sports,technology;female;;other;Amelia;A;GE;2004-06-20;no;yes;;nonuts;photography,travel;female;;
 Bellatrix;B;GE;2005-07-22;yes;no;nonuts;;culture,science;female;;same;Bernard;B;GE;2005-09-12;yes;no;vegetarian;;travel,hiking;male;;same
 Callista;C;IT;2006-11-01;no;yes;vegetarian;nonuts;science,reading;male;;other;Chloe;C;IT;2006-03-05;no;yes;nonuts;vegetarian;hiking,reading;female;;Other
@@ -17,7 +17,7 @@ Milo;M;IT;2007-03-08;no;yes;nonuts;vegetarian;reading,gaming;male;;other;Olivia;
 Niamh;N;ES;2003-08-20;;no;;vegetarian;gaming,music;female;;;Peter;P;ES;2003-06-16;;no;;nonuts;photography,travel;male;;
 Orion;O;GE;2005-05-11;;yes;vegetarian;;music,cooking;male;;same;Quinn;Q;GE;2005-01-28;;yes;vegetarian;;travel,hiking;female;;same
 Phoebe;P;GE;2006-12-24;;no;nonuts;nonuts;cooking,sports;female;;other;Rachel;R;GE;2006-12-04;;yes;nonuts;nonuts;hiking,cooking;female;;Other
-Quinn;Q;IT;2004-02-01;no;yes;;vegetarian;sports,technology;female;;;Samuel;S;IT;2004-09-03;no;no;;vegetarian;cooking,gardening;;
+Quinn;Q;IT;2004-02-01;no;yes;;vegetarian;sports,technology;female;;;Samuel;S;IT;2004-09-03;no;no;;vegetarian;cooking,gardening;;;
 Rowan;R;ES;2005-07-16;yes;no;vegetarian;;technology,culture;male;;same;Tina;T;ES;2005-02-09;yes;no;vegetarian;;gardening,music;female;;same
 Sora;S;GE;2007-10-09;no;yes;nonuts;vegetarian;culture,science;female;;other;Uriel;U;GE;2007-04-13;no;yes;nonuts;vegetarian;music,painting;male;;Other
 Thorne;T;GE;2003-06-03;;no;;nonuts;science,reading;male;;;Violet;V;GE;2003-05-26;;no;;nonuts;painting,writing;male;;

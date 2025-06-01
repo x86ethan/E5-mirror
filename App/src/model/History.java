@@ -50,10 +50,13 @@ public class History implements DataType {
             while(line != null) {
                 String[] columns = line.split(";");
 
-                int half = columns.length / 2;
+                final int HALF = 12;
 
-                String host = String.join(";", Arrays.copyOfRange(columns, 0, half));
-                String guest = String.join(";", Arrays.copyOfRange(columns, half, columns.length));
+                String host = String.join(";", Arrays.copyOfRange(columns, 0, HALF));
+                String guest = String.join(";", Arrays.copyOfRange(columns, HALF, columns.length));
+
+                System.out.println(host);
+                System.out.println(guest);
 
                 Teenager teenHost = Teenager.lineToTeen(host, ";");
                 Teenager teenGuest = Teenager.lineToTeen(guest, ";");

@@ -50,7 +50,7 @@ public class TeenagerTest {
     @Test
     public void hasCriteriaTest(){
         assertTrue(t1.hasCriteria("HOST_HAS_ANIMAL","false"));
-        assertTrue(t2.hasCriteria("Guest_Food","nonuts"));
+        assertTrue(t2.hasCriteria("GUEST_FOOD","nonuts"));
         assertFalse(t3.hasCriteria("HOBBIES",""));
     }
 
