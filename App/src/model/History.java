@@ -1,6 +1,13 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Class History 
@@ -30,11 +37,39 @@ public class History implements DataType {
     }
 
     public boolean importCSV(String filename, boolean header){
-        return false;
-    }
+        try(BufferedReader br = new BufferedReader(
+                new FileReader(System.getProperty("user.dir")+File.separator+"res"+File.separator+filename))) {
+            String line = br.readLine();
+            if (header){
+                line = br.readLine();
+            }
+            while(line != null) {
+                String[] columns = line.split(";");
 
-    public boolean exportCSV(String filename){
-        return false;
+                int half = columns.length / 2;
+
+                String host = String.join(";", Arrays.copyOfRange(columns, 0, half));
+                String guest = String.join(";", Arrays.copyOfRange(columns, half, columns.length));
+
+                Teenager teenHost = Teenager.lineToTeen(host, ";");
+                Teenager teenGuest = Teenager.lineToTeen(guest, ";");
+
+                this.addAffectation(new Affectation(teenHost, teenGuest));
+
+                line = br.readLine();
+            }
+        } catch(FileNotFoundException e) {
+            System.out.println("File not found: "); e.printStackTrace();
+            return false;
+        } catch(IOException e) {
+            System.out.println("Reading error: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        } catch (Exception e){
+            System.out.println("Unreadable thing in line: "); e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public boolean hasAlreadyBeenMatched(Teenager host, Teenager guest) {
