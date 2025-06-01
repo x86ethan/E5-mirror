@@ -28,6 +28,10 @@ public class History implements DataType {
         this(new ArrayList<Affectation>());
     }
 
+    public ArrayList<Affectation> getHistory() {
+        return this.history;
+    }
+
     public void addAffectation(Affectation affectation) {
         this.history.add(affectation);
     }
@@ -67,6 +71,20 @@ public class History implements DataType {
             return false;
         } catch (Exception e){
             System.out.println("Unreadable thing in line: "); e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean exportCSV(String filename){
+        try(PrintWriter pw = new PrintWriter(new File(System.getProperty("user.dir")+File.separator+"res"+File.separator+filename))) {
+            pw.println("FORENAME;NAME;COUNTRY;BIRTH_DATE;GUEST_ANIMAL_HAS_ALLERGY;HOST_ANIMAL;GUEST_FOOD_CONSTRAINT;HOST_FOOD;HOBBIES;GENDER;PAIR_GENDER;HISTORY");
+            for(Affectation aff: this.history){
+                pw.println(Teenager.teenToLine(aff.getHost())+";"+Teenager.teenToLine(aff.getGuest()));
+            }
+        } catch(IOException e) {
+            System.out.println("Writing error: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
         return true;
