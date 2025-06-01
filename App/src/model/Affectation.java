@@ -109,6 +109,13 @@ public class Affectation {
 
         double hobbiesCompatibility = getHobbiesCompatibility(guestHobbies, hostHobbies);
 
+        // Just French
+        if (this.host.getCountry() == Country.FR || this.guest.getCountry() == Country.FR) {
+            if (hobbiesCompatibility == 0) {
+                throw new AffectationException("FRENCH");
+            }
+        }
+
         int genderCompatibility = 0;
 
         if (this.guest.getCriteriaValue("PAIR_GENDER").equals(this.host.getCriteriaValue("GENDER"))) {
@@ -193,12 +200,7 @@ public class Affectation {
             }
         }
 
-        // Just French
-        if (this.host.getCountry() == Country.FR || this.guest.getCountry() == Country.FR) {
-            if (matchingHobbies.isEmpty()) {
-                throw new AffectationException("FRENCH");
-            }
-        }
+        
 
         int maxHobbiesLength;
         if (hostHobbies.length > guestHobbies.length) {
