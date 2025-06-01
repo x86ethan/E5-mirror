@@ -17,4 +17,4 @@ clean:
 
 pdf: prerequisites-pdflatex clean
 	@echo "Génération de Output.pdf"
-	@pandoc --defaults=config.yaml -o $(PWD)/../Rapport.pdf
+	@pandoc --defaults=config.yaml -o $(PWD)/../Rapport.pdf -H disable_float.tex

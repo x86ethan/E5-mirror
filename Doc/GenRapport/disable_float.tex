@@ -1,0 +1,8 @@
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure} {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
