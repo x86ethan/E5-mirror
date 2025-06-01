@@ -57,4 +57,16 @@ public class HistoryTest {
         assertTrue(success);
         assertEquals(50, history.getHistory().size());
     }
+
+    @Test
+    public void testExportCSV() {
+        History history = new History();
+        assertTrue(history.importCSV("History.csv", true));
+        assertTrue(history.exportCSV("ExportTest.csv"));
+
+        History history2 = new History();
+        assertTrue(history2.importCSV("ExportTest.csv", true));
+
+        assertEquals(history.getHistory(), history2.getHistory());
+    }
 }
