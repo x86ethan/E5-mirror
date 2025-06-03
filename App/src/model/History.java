@@ -2,12 +2,20 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Class History 
@@ -17,7 +25,7 @@ import java.util.Arrays;
  * @version v2
 **/
 
-public class History implements DataType {
+public class History implements DataType, Serializable {
     private ArrayList<Affectation> history;
     
     public History (ArrayList<Affectation> pastAffectations) {
@@ -91,6 +99,42 @@ public class History implements DataType {
             return false;
         }
         return true;
+    }
+
+    public void saveToFile(String filename) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(new File(System.getProperty("user.dir")+File.separator+"res"+File.separator+filename)))) {
+            out.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static History loadFromFile(String filename) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(System.getProperty("user.dir")+File.separator+"res"+File.separator+filename)))){
+            History h = (History) in.readObject();
+            h.buildHostGuestMap();
+            return h;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return new History();
+        }
+    }
+
+    public Map<Teenager, List<Teenager>> buildHostGuestMap() {
+        Map<Teenager, List<Teenager>> hostGuestMap = new HashMap<>();
+
+        for (Affectation aff : this.history) {
+            Teenager host = aff.getHost();
+            Teenager guest = aff.getGuest();
+
+            // Ajoute une entrée si le host n'existe pas encore dans la map
+            hostGuestMap.putIfAbsent(host, new ArrayList<>());
+
+            // Ajoute le guest à la liste du host
+            hostGuestMap.get(host).add(guest);
+        }
+
+        return hostGuestMap;
     }
 
     public boolean hasAlreadyBeenMatched(Teenager host, Teenager guest) {

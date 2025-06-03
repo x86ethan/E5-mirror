@@ -36,6 +36,13 @@ public class TeenagerInventory implements DataType{
         return this.teenagers;
     }
 
+    /**
+     * Importe une liste d'adolescents depuis un fichier CSV.
+     *
+     * @param filename Le nom du fichier CSV situé dans le dossier "res".
+     * @param header   Indique si la première ligne du fichier est un en-tête (et donc à ignorer).
+     * @return true si l'importation a réussi, false en cas d'erreur (fichier introuvable, erreur de lecture, etc.).
+     */
     public boolean importCSV(String filename, boolean header){
         try(BufferedReader br = new BufferedReader(
                 new FileReader(System.getProperty("user.dir")+File.separator+"res"+File.separator+filename))) {
@@ -61,6 +68,12 @@ public class TeenagerInventory implements DataType{
         return true;
     }
 
+    /**
+     * Exporte tous les adolescents contenus dans l'inventaire vers un fichier CSV.
+     *
+     * @param filename Le nom du fichier CSV à générer (dans le dossier "res").
+     * @return true si l'exportation a réussi, false en cas d'erreur d'écriture.
+     */
     public boolean exportCSV(String filename){
         try(PrintWriter pw = new PrintWriter(new File(System.getProperty("user.dir")+File.separator+"res"+File.separator+filename))) {
             pw.println("FORENAME;NAME;COUNTRY;BIRTH_DATE;GUEST_ANIMAL_HAS_ALLERGY;HOST_ANIMAL;GUEST_FOOD_CONSTRAINT;HOST_FOOD;HOBBIES;GENDER;PAIR_GENDER;HISTORY");

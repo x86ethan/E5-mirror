@@ -10,7 +10,7 @@ import java.lang.Math;
  * @version 2.0
  */
 
-public class Affectation {
+public class Affectation{
     private Teenager host;
     private Teenager guest;
 
