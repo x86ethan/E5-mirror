@@ -91,4 +91,6 @@ public class TeenagerInventory implements DataType{
     public ArrayList<Teenager> findTeenagerByCriterion(Country country){
         return new ArrayList<>();
     }
+
+    
 }
