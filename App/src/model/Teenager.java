@@ -68,6 +68,10 @@ public class Teenager {
         return criteria;
     }
 
+    public boolean isCriteriaNull(String criteria) {
+        return this.criteria.get(criteria).equals("");
+    }
+
     public String getFirstname() {
         return firstname;
     }
