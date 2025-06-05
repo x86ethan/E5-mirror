@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class TeenagerInventory implements DataType{
     private ArrayList<Teenager> teenagers;
 
-    public static Map<String, Character> CriteriaMap = new HashMap<String, Character>() {{
+    public final static Map<String, Character> CriteriaMap = new HashMap<String, Character>() {{
         put("GUEST_ANIMAL_ALLERGY", 'B');
         put("HOST_HAS_ANIMAL", 'B');
         put("GUEST_FOOD", 'T');
@@ -25,10 +25,11 @@ public class TeenagerInventory implements DataType{
         put("HISTORY", 'T');
     }};
 
+   
+
     public static String[] keys = new String[]{"GUEST_ANIMAL_HAS_ALLERGY", "HOST_ANIMAL", "GUEST_FOOD_CONSTRAINT", "HOST_FOOD", "HOBBIES", "GENDER", "PAIR_GENDER", "HISTORY"};
         
-
-    TeenagerInventory(){
+        TeenagerInventory(){
         this.teenagers = new ArrayList<>();
     }
 
