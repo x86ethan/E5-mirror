@@ -25,8 +25,6 @@ public class TeenagerInventory implements DataType{
         put("HISTORY", 'T');
     }};
 
-   
-
     public static String[] keys = new String[]{"GUEST_ANIMAL_HAS_ALLERGY", "HOST_ANIMAL", "GUEST_FOOD_CONSTRAINT", "HOST_FOOD", "HOBBIES", "GENDER", "PAIR_GENDER", "HISTORY"};
         
         TeenagerInventory(){
@@ -90,6 +88,31 @@ public class TeenagerInventory implements DataType{
 
     public ArrayList<Teenager> findTeenagerByCriterion(Country country){
         return new ArrayList<>();
+    }
+
+    public ArrayList<Teenager> sortHosts () {
+
+        ArrayList<Teenager> hosts = new ArrayList<>();
+
+        for (Teenager t : this.teenagers) {
+            if (t.isCriteriaNull("GUEST_FOOD") && t.isCriteriaNull("GUEST_ANIMAL_ALLERGY")) {
+                hosts.add(t);
+            }
+        }
+
+        return hosts;
+    }
+
+    public ArrayList<Teenager> sortGuests () {
+        ArrayList<Teenager> guests = new ArrayList<>();
+
+        for (Teenager t : this.teenagers) {
+            if (t.isCriteriaNull("HOST_FOOD") && t.isCriteriaNull("HOST_HAS_ANIMAL")) {
+                guests.add(t);
+            }
+        }
+
+        return guests;
     }
 
     
