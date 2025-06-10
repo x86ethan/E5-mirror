@@ -69,7 +69,7 @@ public class Teenager {
     }
 
     public boolean isCriteriaNull(String criteria) {
-        return this.criteria.get(criteria).equals("");
+        return this.criteria.get(criteria) == null || this.criteria.get(criteria).equals("");
     }
 
     public String getFirstname() {
@@ -104,7 +104,7 @@ public class Teenager {
 
         Affectation aff = new Affectation(this, other);
         return aff.compatibility(history);
-
+        
     }
 
     public double compatibility(Teenager other) throws AffectationException {

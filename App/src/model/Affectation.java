@@ -250,5 +250,9 @@ public class Affectation {
         return false;
     }
 
+    public String toString() {
+        return "HOST: " + this.host.toString() + "/GUEST: " + this.guest.toString();
+    }
+
 
 }
